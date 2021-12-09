@@ -1,12 +1,10 @@
 import "react-native-gesture-handler";
 import React, { useState } from "react";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
 import { enableScreens } from "react-native-screens";
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
 
-import FlyText from "./app/components/FlyText";
+import FlyBuyNavigator from "./app/navigations/FlyBuyNavigator";
 
 enableScreens();
 
@@ -29,19 +27,5 @@ export default function App() {
     );
   }
 
-  return (
-    <View style={styles.container}>
-      <FlyText>Open up App.js to start working on your app!</FlyText>
-      <StatusBar style="auto" />
-    </View>
-  );
+  return <FlyBuyNavigator />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

@@ -1,11 +1,15 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
+
+import AuthStack from "./AuthStack";
 
 const FlyBuyNavigator = () => {
   return (
-    <View>
-      <Text></Text>
-    </View>
+    <NavigationContainer>
+      <AuthStack />
+      <StatusBar style="auto" />
+    </NavigationContainer>
   );
 };
 
