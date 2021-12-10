@@ -1,11 +1,14 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
+import { useTheme } from "@react-navigation/native";
 
 import FlyText from "../components/FlyText";
 
 const RegisterScreen = ({ navigation }) => {
+  const { colors } = useTheme();
+
   return (
-    <View style={styles.registerScreen}>
+    <View style={{ ...styles.registerScreen, backgroundColor: colors.card }}>
       <FlyText>RegisterScreen</FlyText>
     </View>
   );
