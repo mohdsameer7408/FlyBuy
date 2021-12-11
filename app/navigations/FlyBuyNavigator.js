@@ -18,13 +18,22 @@ const CustomDefaultTheme = {
   },
 };
 
+const CustomDarkTheme = {
+  ...DarkTheme,
+  colors: {
+    ...DarkTheme.colors,
+    background: "#191720",
+  },
+};
+
 const FlyBuyNavigator = () => {
   const scheme = useColorScheme();
+  console.log(scheme);
 
   return (
     <AppearanceProvider>
       <NavigationContainer
-        theme={scheme === "dark" ? DarkTheme : CustomDefaultTheme}
+        theme={scheme === "dark" ? CustomDarkTheme : CustomDefaultTheme}
       >
         <AuthStack />
         <StatusBar style="auto" />
