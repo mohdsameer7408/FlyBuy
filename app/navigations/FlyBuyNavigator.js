@@ -28,7 +28,6 @@ const CustomDarkTheme = {
 
 const FlyBuyNavigator = () => {
   const scheme = useColorScheme();
-  console.log(scheme);
 
   return (
     <AppearanceProvider>
