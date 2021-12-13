@@ -4,6 +4,7 @@ import { useTheme } from "@react-navigation/native";
 
 import FlyTextBold from "../components/FlyTextBold";
 import FlyText from "../components/FlyText";
+import FlyButton from "../components/FlyButton";
 
 const { width } = Dimensions.get("window");
 
@@ -21,6 +22,9 @@ const OnboardinScreen = ({ navigation }) => {
           sunt itaque autem officia obcaecati sint aperiam fugiat et.
         </FlyText>
       </View>
+      <FlyButton containerStyle={styles.loginButton} buttonColor="#4d4dff">
+        Submit
+      </FlyButton>
     </View>
   );
 };
@@ -44,5 +48,9 @@ const styles = StyleSheet.create({
     marginTop: 20,
     textAlign: "center",
     fontSize: 16,
+  },
+  loginButton: {
+    width: 80,
+    height: 40,
   },
 });

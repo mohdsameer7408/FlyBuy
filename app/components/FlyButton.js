@@ -5,17 +5,24 @@ import { useTheme } from "@react-navigation/native";
 import FlyTextBold from "./FlyTextBold";
 import TouchableComponent from "./TouchableComponent";
 
-const FlyButton = ({ children, onButtonPress, style }) => {
+const FlyButton = ({
+  children,
+  onButtonPress,
+  containerStyle,
+  buttonColor,
+}) => {
   const { colors } = useTheme();
 
   return (
     <TouchableComponent
       containerStyle={{
         ...styles.flyButton,
-        ...style,
-        shadowColor: colors.border,
+        ...containerStyle,
       }}
-      wrapperStyle={styles.flyButtonWrapper}
+      wrapperStyle={{
+        ...styles.flyButtonWrapper,
+        backgroundColor: buttonColor,
+      }}
       onPress={onButtonPress}
     >
       <FlyTextBold>{children}</FlyTextBold>
@@ -33,9 +40,12 @@ const styles = StyleSheet.create({
       width: 0,
       height: 6,
     },
-    shadowOpacity: 0.26,
+    shadowOpacity: 0.4,
     shadowRadius: 8,
-    elevation: 8,
+    elevation: 6,
   },
-  flyButtonWrapper: {},
+  flyButtonWrapper: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
