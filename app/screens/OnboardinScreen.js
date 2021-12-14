@@ -1,5 +1,5 @@
 import React from "react";
-import { Dimensions, StatusBar, StyleSheet, View } from "react-native";
+import { Dimensions, StatusBar, StyleSheet, View, Image } from "react-native";
 import { useTheme } from "@react-navigation/native";
 
 import FlyTextBold from "../components/FlyTextBold";
@@ -13,6 +13,11 @@ const OnboardinScreen = ({ navigation }) => {
 
   return (
     <View style={{ ...styles.onboardinScreen }}>
+      <Image
+        source={require("../assets/images/onboarding.png")}
+        resizeMode="contain"
+        style={styles.onboardingImage}
+      />
       <View style={styles.descriptionContainer}>
         <FlyTextBold style={styles.title}>
           Lorem ipsum dolor sit amet.
@@ -34,7 +39,7 @@ export default OnboardinScreen;
 const styles = StyleSheet.create({
   onboardinScreen: {
     flex: 1,
-    paddingVertical: StatusBar.currentHeight + 30,
+    paddingVertical: StatusBar.currentHeight,
     alignItems: "center",
   },
   descriptionContainer: {
@@ -52,5 +57,8 @@ const styles = StyleSheet.create({
   loginButton: {
     width: 80,
     height: 40,
+  },
+  onboardingImage: {
+    width: width * 0.8,
   },
 });
