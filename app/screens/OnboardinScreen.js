@@ -12,7 +12,7 @@ const OnboardinScreen = ({ navigation }) => {
   const { colors } = useTheme();
 
   return (
-    <View style={{ ...styles.onboardinScreen }}>
+    <View style={styles.onboardinScreen}>
       <Image
         source={require("../assets/images/onboarding.png")}
         resizeMode="contain"
@@ -27,9 +27,20 @@ const OnboardinScreen = ({ navigation }) => {
           sunt itaque autem officia obcaecati sint aperiam fugiat et.
         </FlyText>
       </View>
-      <FlyButton containerStyle={styles.loginButton} buttonColor="#4d4dff">
-        Submit
-      </FlyButton>
+      <View style={styles.actionButtons}>
+        <FlyButton
+          containerStyle={styles.registerButton}
+          buttonColor={colors.text}
+          textStyle={{ color: colors.background }}
+        >
+          Register
+        </FlyButton>
+        <FlyButton
+          containerStyle={{ ...styles.registerButton, ...styles.loginButton }}
+        >
+          Sign In
+        </FlyButton>
+      </View>
     </View>
   );
 };
@@ -42,6 +53,9 @@ const styles = StyleSheet.create({
     paddingVertical: StatusBar.currentHeight,
     alignItems: "center",
   },
+  onboardingImage: {
+    width: width * 0.8,
+  },
   descriptionContainer: {
     width: width * 0.8,
   },
@@ -53,12 +67,23 @@ const styles = StyleSheet.create({
     marginTop: 20,
     textAlign: "center",
     fontSize: 16,
+    color: "#888",
+  },
+  actionButtons: {
+    position: "absolute",
+    bottom: 30,
+    overflow: "hidden",
+    flexDirection: "row",
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
+    borderRadius: 12,
+    marginTop: 30,
+  },
+  registerButton: {
+    width: width * 0.35,
+    height: 50,
+    borderRadius: 12,
   },
   loginButton: {
-    width: 80,
-    height: 40,
-  },
-  onboardingImage: {
-    width: width * 0.8,
+    shadowColor: "transparent",
   },
 });

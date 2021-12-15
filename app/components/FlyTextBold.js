@@ -6,7 +6,7 @@ const FlyTextBold = ({ style, children }) => {
   const { colors } = useTheme();
 
   return (
-    <Text style={[styles.text, style, { color: colors.text }]}>{children}</Text>
+    <Text style={[styles.text, { color: colors.text }, style]}>{children}</Text>
   );
 };
 
