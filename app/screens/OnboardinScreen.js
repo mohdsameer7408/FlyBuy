@@ -32,11 +32,13 @@ const OnboardinScreen = ({ navigation }) => {
           containerStyle={styles.registerButton}
           buttonColor={colors.text}
           textStyle={{ color: colors.background }}
+          onButtonPress={() => navigation.navigate("RegisterScreen")}
         >
           Register
         </FlyButton>
         <FlyButton
           containerStyle={{ ...styles.registerButton, ...styles.loginButton }}
+          onButtonPress={() => navigation.navigate("LoginScreen")}
         >
           Sign In
         </FlyButton>
