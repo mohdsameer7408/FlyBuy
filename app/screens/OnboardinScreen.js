@@ -77,13 +77,13 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     flexDirection: "row",
     backgroundColor: "rgba(255, 255, 255, 0.2)",
-    borderRadius: 12,
+    borderRadius: 16,
     marginTop: 30,
   },
   registerButton: {
-    width: width * 0.35,
+    width: width * 0.42,
     height: 50,
-    borderRadius: 12,
+    borderRadius: 16,
   },
   loginButton: {
     shadowColor: "transparent",
