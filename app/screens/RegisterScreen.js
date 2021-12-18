@@ -1,5 +1,11 @@
 import React from "react";
-import { Dimensions, StatusBar, StyleSheet, View } from "react-native";
+import {
+  Dimensions,
+  StatusBar,
+  StyleSheet,
+  View,
+  ScrollView,
+} from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
 
@@ -15,7 +21,7 @@ const RegisterScreen = ({ navigation }) => {
   const { colors } = useTheme();
 
   return (
-    <View style={styles.registerScreen}>
+    <ScrollView contentContainerStyle={styles.registerScreen}>
       <TouchableComponent
         containerStyle={styles.backButton}
         wrapperStyle={styles.backButtonWrapper}
@@ -36,7 +42,11 @@ const RegisterScreen = ({ navigation }) => {
       </View>
       <View style={styles.bottomContainer}>
         <FlyText style={styles.loginText}>
-          Have an account?<FlyTextBold> Sign In</FlyTextBold>
+          Have an account?
+          <FlyTextBold onPress={() => navigation.navigate("LoginScreen")}>
+            {" "}
+            Sign In
+          </FlyTextBold>
         </FlyText>
         <FlyButton
           containerStyle={styles.registerButton}
@@ -46,7 +56,7 @@ const RegisterScreen = ({ navigation }) => {
           Register
         </FlyButton>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -54,8 +64,9 @@ export default RegisterScreen;
 
 const styles = StyleSheet.create({
   registerScreen: {
-    flex: 1,
-    paddingVertical: StatusBar.currentHeight + 20,
+    minHeight: height,
+    paddingTop: StatusBar.currentHeight + 20,
+    paddingBottom: 10,
     paddingHorizontal: width * 0.07,
   },
   backButton: {
@@ -76,10 +87,13 @@ const styles = StyleSheet.create({
     marginTop: height * 0.08,
   },
   bottomContainer: {
-    position: "absolute",
-    bottom: 30,
+    // position: "absolute",
+    // bottom: 30,
+    // flex: 1,
+    flex: 1,
     width: width * 0.84,
     alignSelf: "center",
+    justifyContent: "flex-end",
     alignItems: "center",
   },
   loginText: {

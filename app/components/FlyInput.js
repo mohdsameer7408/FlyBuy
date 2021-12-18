@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, TextInput, View } from "react-native";
+import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -15,9 +15,12 @@ const FlyInput = ({ placeholder, password }) => {
         placeholder={placeholder}
       />
       {password && (
-        <View style={styles.iconContainer}>
+        <TouchableOpacity
+          style={styles.iconContainer}
+          onPress={() => console.log("password")}
+        >
           <Ionicons name="eye-outline" color="#333" size={18} />
-        </View>
+        </TouchableOpacity>
       )}
     </View>
   );
