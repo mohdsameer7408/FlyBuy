@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import {
   Dimensions,
   StatusBar,
@@ -20,6 +20,8 @@ const { width, height } = Dimensions.get("window");
 const RegisterScreen = ({ navigation }) => {
   const { colors } = useTheme();
 
+  const onInputChange = useCallback((id, value, isValid) => {}, []);
+
   return (
     <ScrollView contentContainerStyle={styles.registerScreen}>
       <TouchableComponent
@@ -36,9 +38,19 @@ const RegisterScreen = ({ navigation }) => {
         Welcome to Fly Buy. {"\n"}Shop on your phone!
       </FlyText>
       <View style={styles.form}>
-        <FlyInput placeholder="Name" />
-        <FlyInput placeholder="Phone, email or usename" />
-        <FlyInput placeholder="password" password />
+        <FlyInput placeholder="Name" onInputChange={onInputChange} required />
+        <FlyInput
+          placeholder="Phone, email or usename"
+          onInputChange={onInputChange}
+          email
+          required
+        />
+        <FlyInput
+          placeholder="password"
+          password
+          onInputChange={onInputChange}
+          required
+        />
       </View>
       <View style={styles.bottomContainer}>
         <FlyText style={styles.loginText}>

@@ -15,6 +15,7 @@ const CustomDefaultTheme = {
     ...DefaultTheme.colors,
     background: "rgb(255, 255, 255)",
     card: "rgb(242, 242, 242)",
+    error: "#e80000",
   },
 };
 
@@ -23,6 +24,7 @@ const CustomDarkTheme = {
   colors: {
     ...DarkTheme.colors,
     background: "#191720",
+    error: "#e80000",
   },
 };
 
