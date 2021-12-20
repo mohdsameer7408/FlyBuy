@@ -82,14 +82,15 @@ const FlyInput = ({
     <View
       style={{
         ...styles.inputContainer,
-        borderColor: isInputBlur && !isValid && touched ? colors.error : "#333",
+        borderColor:
+          isInputBlur && !isValid && touched ? colors.error : colors.border,
       }}
     >
       <TextInput
         {...rest}
         style={{ ...styles.input, color: colors.text }}
         secureTextEntry={password ? !isPassowrdVisible : false}
-        placeholderTextColor="#888"
+        placeholderTextColor={colors.placeholder}
         placeholder={placeholder}
         onBlur={() => setIsInputBlur(true)}
         value={value}
@@ -97,12 +98,12 @@ const FlyInput = ({
       />
       {password ? (
         <TouchableOpacity
-          style={styles.iconContainer}
+          style={{ ...styles.iconContainer, borderColor: colors.border }}
           onPress={() => setIsPasswordVisible((prevState) => !prevState)}
         >
           <Ionicons
             name={`${isPassowrdVisible ? "eye-off-outline" : "eye-outline"}`}
-            color="#333"
+            color={colors.border}
             size={18}
           />
         </TouchableOpacity>
@@ -111,7 +112,7 @@ const FlyInput = ({
           <View style={styles.iconContainer}>
             <Ionicons
               name="checkmark-circle-outline"
-              color="#7FBD32"
+              color={colors.success}
               size={18}
             />
           </View>
@@ -144,7 +145,6 @@ const styles = StyleSheet.create({
     height: 26,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: "#333",
     justifyContent: "center",
     alignItems: "center",
   },

@@ -51,7 +51,7 @@ const LoginScreen = ({ navigation }) => {
         />
       </View>
       <View style={styles.bottomContainer}>
-        <FlyText style={styles.registerText}>
+        <FlyText style={{ ...styles.registerText, color: colors.placeholder }}>
           Don't have an account?
           <FlyTextBold onPress={() => navigation.navigate("RegisterScreen")}>
             {" "}
@@ -107,7 +107,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   registerText: {
-    color: "#888",
     marginBottom: 20,
     fontSize: 16,
   },

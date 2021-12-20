@@ -16,6 +16,9 @@ const CustomDefaultTheme = {
     background: "rgb(255, 255, 255)",
     card: "rgb(242, 242, 242)",
     error: "#e80000",
+    border: "#333",
+    placeholder: "#888",
+    success: "#7FBD32",
   },
 };
 
@@ -25,6 +28,9 @@ const CustomDarkTheme = {
     ...DarkTheme.colors,
     background: "#191720",
     error: "#e80000",
+    border: "#333",
+    placeholder: "#888",
+    success: "#7FBD32",
   },
 };
 

@@ -22,7 +22,7 @@ const OnboardinScreen = ({ navigation }) => {
         <FlyTextBold style={styles.title}>
           Lorem ipsum dolor sit amet.
         </FlyTextBold>
-        <FlyText style={styles.description}>
+        <FlyText style={{ ...styles.description, color: colors.placeholder }}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim modi
           sunt itaque autem officia obcaecati sint aperiam fugiat et.
         </FlyText>
@@ -69,7 +69,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     textAlign: "center",
     fontSize: 16,
-    color: "#888",
   },
   actionButtons: {
     position: "absolute",
