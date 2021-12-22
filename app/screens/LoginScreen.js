@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useReducer } from "react";
 import {
   Dimensions,
   StatusBar,
@@ -14,11 +14,26 @@ import FlyText from "../components/FlyText";
 import FlyTextBold from "../components/FlyTextBold";
 import FlyButton from "../components/FlyButton";
 import FlyInput from "../components/FlyInput";
+import formReducer from "../features/formReducer";
 
 const { width, height } = Dimensions.get("window");
 
 const LoginScreen = ({ navigation }) => {
   const { colors } = useTheme();
+  const [{ values, validities, isFormValid }, dispatchFormState] = useReducer(
+    formReducer,
+    {
+      values: {
+        email: "",
+        password: "",
+      },
+      validities: {
+        email: false,
+        password: false,
+      },
+      isFormValid: false,
+    }
+  );
 
   const onInputChange = useCallback((id, value, isValid) => {}, []);
 
