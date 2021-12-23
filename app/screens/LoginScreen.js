@@ -14,7 +14,7 @@ import FlyText from "../components/FlyText";
 import FlyTextBold from "../components/FlyTextBold";
 import FlyButton from "../components/FlyButton";
 import FlyInput from "../components/FlyInput";
-import formReducer from "../features/formReducer";
+import formReducer, { UPDATE_FORM } from "../features/formReducer";
 
 const { width, height } = Dimensions.get("window");
 
@@ -35,7 +35,19 @@ const LoginScreen = ({ navigation }) => {
     }
   );
 
-  const onInputChange = useCallback((id, value, isValid) => {}, []);
+  const onInputChange = useCallback(
+    (id, value, isValid) => {
+      dispatchFormState({
+        type: UPDATE_FORM,
+        payload: {
+          id,
+          value,
+          isValid,
+        },
+      });
+    },
+    [dispatchFormState]
+  );
 
   return (
     <ScrollView contentContainerStyle={styles.loginScreen}>
@@ -54,11 +66,13 @@ const LoginScreen = ({ navigation }) => {
       </FlyText>
       <View style={styles.form}>
         <FlyInput
+          id="email"
           placeholder="Phone, email or usename"
           onInputChange={onInputChange}
           required
         />
         <FlyInput
+          id="password"
           placeholder="password"
           password
           onInputChange={onInputChange}
