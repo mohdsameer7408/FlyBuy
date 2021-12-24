@@ -19,8 +19,36 @@ const { width, height } = Dimensions.get("window");
 
 const RegisterScreen = ({ navigation }) => {
   const { colors } = useTheme();
+  const [{ values, validities, isFormValid }, dispatchFormState] = useReducer(
+    formReducer,
+    {
+      values: {
+        name: "",
+        email: "",
+        password: "",
+      },
+      validities: {
+        name: false,
+        email: false,
+        password: false,
+      },
+      isFormValid: false,
+    }
+  );
 
-  const onInputChange = useCallback((id, value, isValid) => {}, []);
+  const onInputChange = useCallback(
+    (id, value, isValid) => {
+      dispatchFormState({
+        type: UPDATE_FORM,
+        payload: {
+          id,
+          value,
+          isValid,
+        },
+      });
+    },
+    [dispatchFormState]
+  );
 
   return (
     <ScrollView contentContainerStyle={styles.registerScreen}>
@@ -38,18 +66,31 @@ const RegisterScreen = ({ navigation }) => {
         Welcome to Fly Buy. {"\n"}Shop on your phone!
       </FlyText>
       <View style={styles.form}>
-        <FlyInput placeholder="Name" onInputChange={onInputChange} required />
         <FlyInput
+          id="name"
+          placeholder="Name"
+          onInputChange={onInputChange}
+          required
+          initialValue={values.name}
+          initiallyValid={validities.name}
+        />
+        <FlyInput
+          id="email"
           placeholder="Phone, email or usename"
           onInputChange={onInputChange}
           email
           required
+          initialValue={values.email}
+          initiallyValid={validities.email}
         />
         <FlyInput
+          id="password"
           placeholder="password"
           password
           onInputChange={onInputChange}
           required
+          initialValue={values.password}
+          initiallyValid={validities.password}
         />
       </View>
       <View style={styles.bottomContainer}>

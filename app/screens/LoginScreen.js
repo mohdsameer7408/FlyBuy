@@ -70,6 +70,8 @@ const LoginScreen = ({ navigation }) => {
           placeholder="Phone, email or usename"
           onInputChange={onInputChange}
           required
+          initialValue={values.email}
+          initiallyValid={validities.email}
         />
         <FlyInput
           id="password"
@@ -77,6 +79,8 @@ const LoginScreen = ({ navigation }) => {
           password
           onInputChange={onInputChange}
           required
+          initialValue={values.password}
+          initiallyValid={validities.password}
         />
       </View>
       <View style={styles.bottomContainer}>
