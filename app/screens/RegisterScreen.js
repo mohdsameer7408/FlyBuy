@@ -1,10 +1,11 @@
-import React, { useCallback } from "react";
+import React, { useReducer, useCallback } from "react";
 import {
   Dimensions,
   StatusBar,
   StyleSheet,
   View,
   ScrollView,
+  Alert,
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
@@ -14,6 +15,7 @@ import FlyText from "../components/FlyText";
 import FlyTextBold from "../components/FlyTextBold";
 import FlyButton from "../components/FlyButton";
 import FlyInput from "../components/FlyInput";
+import formReducer, { UPDATE_FORM } from "../features/formReducer";
 
 const { width, height } = Dimensions.get("window");
 
@@ -49,6 +51,13 @@ const RegisterScreen = ({ navigation }) => {
     },
     [dispatchFormState]
   );
+
+  const onRegisterHandler = useCallback(async () => {
+    if (!isFormValid)
+      return Alert.alert("Insufficient Data!", "Check for your invalid data.");
+
+    console.log(values, validities);
+  }, [values, validities, isFormValid]);
 
   return (
     <ScrollView contentContainerStyle={styles.registerScreen}>
@@ -97,7 +106,7 @@ const RegisterScreen = ({ navigation }) => {
         <FlyText style={{ ...styles.loginText, color: colors.placeholder }}>
           Have an account?
           <FlyTextBold onPress={() => navigation.navigate("LoginScreen")}>
-            {" "}
+            {"  "}
             Sign In
           </FlyTextBold>
         </FlyText>
@@ -105,6 +114,7 @@ const RegisterScreen = ({ navigation }) => {
           containerStyle={styles.registerButton}
           buttonColor={colors.text}
           textStyle={{ color: colors.background }}
+          onButtonPress={onRegisterHandler}
         >
           Register
         </FlyButton>

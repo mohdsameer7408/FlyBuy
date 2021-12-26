@@ -5,6 +5,7 @@ import {
   StyleSheet,
   View,
   ScrollView,
+  Alert,
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
@@ -48,6 +49,13 @@ const LoginScreen = ({ navigation }) => {
     },
     [dispatchFormState]
   );
+
+  const onLoginHandler = useCallback(async () => {
+    if (!isFormValid)
+      return Alert.alert("Insufficient Data!", "Check for your invalid data.");
+
+    console.log(values, validities);
+  }, [values, validities, isFormValid]);
 
   return (
     <ScrollView contentContainerStyle={styles.loginScreen}>
@@ -95,6 +103,7 @@ const LoginScreen = ({ navigation }) => {
           containerStyle={styles.loginButton}
           buttonColor={colors.text}
           textStyle={{ color: colors.background }}
+          onButtonPress={onLoginHandler}
         >
           Sign In
         </FlyButton>
