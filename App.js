@@ -3,8 +3,10 @@ import React, { useState } from "react";
 import { enableScreens } from "react-native-screens";
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
+import { Provider } from "react-redux";
 
 import FlyBuyNavigator from "./app/navigations/FlyBuyNavigator";
+import store from "./app/features/store";
 
 enableScreens();
 
@@ -27,5 +29,9 @@ export default function App() {
     );
   }
 
-  return <FlyBuyNavigator />;
+  return (
+    <Provider store={store}>
+      <FlyBuyNavigator />
+    </Provider>
+  );
 }
