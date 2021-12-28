@@ -6,8 +6,10 @@ import {
   DarkTheme,
 } from "@react-navigation/native";
 import { AppearanceProvider, useColorScheme } from "react-native-appearance";
+import { useSelector } from "react-redux";
 
 import AuthStack from "./AuthStack";
+import { selectUser } from "../features/authSlice";
 
 const CustomDefaultTheme = {
   ...DefaultTheme,
@@ -36,13 +38,14 @@ const CustomDarkTheme = {
 
 const FlyBuyNavigator = () => {
   const scheme = useColorScheme();
+  const user = useSelector(selectUser);
 
   return (
     <AppearanceProvider>
       <NavigationContainer
         theme={scheme === "dark" ? CustomDarkTheme : CustomDefaultTheme}
       >
-        <AuthStack />
+        {!user && <AuthStack />}
         <StatusBar style="auto" />
       </NavigationContainer>
     </AppearanceProvider>
