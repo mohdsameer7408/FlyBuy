@@ -12,6 +12,7 @@ const TouchableComponent = ({
   wrapperStyle,
   children,
   onPress,
+  ...rest
 }) => {
   let TouchableComponent = TouchableOpacity;
 
@@ -21,7 +22,12 @@ const TouchableComponent = ({
 
   return (
     <View style={[styles.touchableComponent, containerStyle]}>
-      <TouchableComponent style={{ flex: 1 }} useForeground onPress={onPress}>
+      <TouchableComponent
+        style={{ flex: 1 }}
+        useForeground
+        onPress={onPress}
+        {...rest}
+      >
         <View style={[styles.wrapper, wrapperStyle]}>{children}</View>
       </TouchableComponent>
     </View>

@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
+import { useDispatch } from "react-redux";
 
 import TouchableComponent from "../components/TouchableComponent";
 import FlyText from "../components/FlyText";
@@ -16,6 +17,7 @@ import FlyTextBold from "../components/FlyTextBold";
 import FlyButton from "../components/FlyButton";
 import FlyInput from "../components/FlyInput";
 import formReducer, { UPDATE_FORM } from "../features/formReducer";
+import { signInAsync } from "../features/authSlice";
 
 const { width, height } = Dimensions.get("window");
 
@@ -37,6 +39,7 @@ const RegisterScreen = ({ navigation }) => {
       isFormValid: false,
     }
   );
+  const dispatch = useDispatch();
 
   const onInputChange = useCallback(
     (id, value, isValid) => {
@@ -56,8 +59,12 @@ const RegisterScreen = ({ navigation }) => {
     if (!isFormValid)
       return Alert.alert("Insufficient Data!", "Check for your invalid data.");
 
-    console.log(values, validities);
-  }, [values, validities, isFormValid]);
+    try {
+      await dispatch(signInAsync(values));
+    } catch (error) {
+      Alert.alert("Registration Error", "Something went wrong!");
+    }
+  }, [values, validities, isFormValid, dispatch]);
 
   return (
     <ScrollView contentContainerStyle={styles.registerScreen}>

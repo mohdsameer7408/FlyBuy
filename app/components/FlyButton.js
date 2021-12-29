@@ -11,6 +11,7 @@ const FlyButton = ({
   containerStyle,
   buttonColor,
   textStyle,
+  ...rest
 }) => {
   const { colors } = useTheme();
 
@@ -25,6 +26,7 @@ const FlyButton = ({
         backgroundColor: buttonColor,
       }}
       onPress={onButtonPress}
+      {...rest}
     >
       <FlyTextBold style={textStyle}>{children}</FlyTextBold>
     </TouchableComponent>

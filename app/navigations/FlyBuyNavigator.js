@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   NavigationContainer,
@@ -10,6 +10,8 @@ import { useSelector } from "react-redux";
 
 import AuthStack from "./AuthStack";
 import { selectUser } from "../features/authSlice";
+import HomeScreen from "../screens/HomeScreen";
+import SplashScreen from "../screens/SplashScreen";
 
 const CustomDefaultTheme = {
   ...DefaultTheme,
@@ -39,13 +41,16 @@ const CustomDarkTheme = {
 const FlyBuyNavigator = () => {
   const scheme = useColorScheme();
   const user = useSelector(selectUser);
+  const [isLoading, setIsLoading] = useState(true);
+
+  if (isLoading) return <SplashScreen setIsLoading={setIsLoading} />;
 
   return (
     <AppearanceProvider>
       <NavigationContainer
         theme={scheme === "dark" ? CustomDarkTheme : CustomDefaultTheme}
       >
-        {!user && <AuthStack />}
+        {user ? <HomeScreen /> : <AuthStack />}
         <StatusBar style="auto" />
       </NavigationContainer>
     </AppearanceProvider>
