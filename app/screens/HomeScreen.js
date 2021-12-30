@@ -3,8 +3,8 @@ import { Alert, StyleSheet, View } from "react-native";
 import { useDispatch } from "react-redux";
 
 import FlyText from "../components/FlyText";
-import { signOutAsync } from "../features/authSlice";
 import FlyButton from "../components/FlyButton";
+import { signOutAsync } from "../features/authSlice";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
