@@ -1,10 +1,10 @@
 import React from "react";
 import { Alert, StyleSheet, View } from "react-native";
 import { useDispatch } from "react-redux";
-import FlyButton from "../components/FlyButton";
 
 import FlyText from "../components/FlyText";
 import { signOutAsync } from "../features/authSlice";
+import FlyButton from "../components/FlyButton";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
