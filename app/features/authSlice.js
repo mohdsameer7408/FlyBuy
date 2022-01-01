@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import axios from "./axios";
+
 const initialState = {
   user: null,
 };
@@ -20,10 +22,32 @@ const authSlice = createSlice({
 
 export const { signIn, signOut } = authSlice.actions;
 
+export const signUpAsync = (user) => async (dispatch) => {
+  try {
+    const { data } = await axios.post(`/register/`, user);
+    await saveToAsyncStorage("token", data.token);
+    dispatch(signIn(data));
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const signInAsync = (user) => async (dispatch) => {
   try {
-    await saveToAsyncStorage("user", user);
-    dispatch(signIn(user));
+    const { data } = await axios.post(`/login/`, user);
+    await saveToAsyncStorage("token", data.token);
+    dispatch(signIn(data));
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const autoLoginAsync = (token) => async (dispatch) => {
+  try {
+    const { data } = await axios.get(`/user/auto-login/`, {
+      headers: { "auth-token": token },
+    });
+    dispatch(signIn(data));
   } catch (error) {
     throw error;
   }
@@ -31,17 +55,8 @@ export const signInAsync = (user) => async (dispatch) => {
 
 export const signOutAsync = () => async (dispatch) => {
   try {
-    await removeFromAsyncStorage("user");
+    await removeFromAsyncStorage("token");
     dispatch(signOut());
-  } catch (error) {
-    throw error;
-  }
-};
-
-export const autoLoginAsync = () => async (dispatch) => {
-  try {
-    const data = await getFromAsyncStorage("user");
-    dispatch(signIn(data));
   } catch (error) {
     throw error;
   }

@@ -1,5 +1,6 @@
 import "react-native-gesture-handler";
 import React, { useState } from "react";
+import { LogBox } from "react-native";
 import { enableScreens } from "react-native-screens";
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
@@ -18,6 +19,7 @@ const fetchFonts = async () =>
 
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
+  LogBox.ignoreLogs(["Setting a timer"]);
 
   if (!fontsLoaded) {
     return (

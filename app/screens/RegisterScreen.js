@@ -1,4 +1,4 @@
-import React, { useReducer, useCallback } from "react";
+import React, { useReducer, useCallback, useState } from "react";
 import {
   Dimensions,
   StatusBar,
@@ -17,7 +17,7 @@ import FlyTextBold from "../components/FlyTextBold";
 import FlyButton from "../components/FlyButton";
 import FlyInput from "../components/FlyInput";
 import formReducer, { UPDATE_FORM } from "../features/formReducer";
-import { signInAsync } from "../features/authSlice";
+import { signUpAsync } from "../features/authSlice";
 
 const { width, height } = Dimensions.get("window");
 
@@ -27,18 +27,19 @@ const RegisterScreen = ({ navigation }) => {
     formReducer,
     {
       values: {
-        name: "",
+        userName: "",
         email: "",
         password: "",
       },
       validities: {
-        name: false,
+        userName: false,
         email: false,
         password: false,
       },
       isFormValid: false,
     }
   );
+  const [isRegistering, setIsRegistering] = useState(false);
   const dispatch = useDispatch();
 
   const onInputChange = useCallback(
@@ -60,9 +61,11 @@ const RegisterScreen = ({ navigation }) => {
       return Alert.alert("Insufficient Data!", "Check for your invalid data.");
 
     try {
-      await dispatch(signInAsync(values));
+      setIsRegistering(true);
+      await dispatch(signUpAsync(values));
     } catch (error) {
-      Alert.alert("Registration Error", "Something went wrong!");
+      setIsRegistering(false);
+      Alert.alert("Registration Error", error.response.data);
     }
   }, [values, validities, isFormValid, dispatch]);
 
@@ -83,12 +86,12 @@ const RegisterScreen = ({ navigation }) => {
       </FlyText>
       <View style={styles.form}>
         <FlyInput
-          id="name"
-          placeholder="Name"
+          id="userName"
+          placeholder="User Name"
           onInputChange={onInputChange}
           required
-          initialValue={values.name}
-          initiallyValid={validities.name}
+          initialValue={values.userName}
+          initiallyValid={validities.userName}
         />
         <FlyInput
           id="email"
@@ -123,7 +126,7 @@ const RegisterScreen = ({ navigation }) => {
           textStyle={{ color: colors.background }}
           onButtonPress={onRegisterHandler}
         >
-          Register
+          {isRegistering ? "Signing Up..." : "Register"}
         </FlyButton>
       </View>
     </ScrollView>

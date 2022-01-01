@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import { getFromAsyncStorage, signIn } from "../features/authSlice";
+import { autoLoginAsync, getFromAsyncStorage } from "../features/authSlice";
 import LoadingScreen from "./LoadingScreen";
 
 const SplashScreen = ({ setIsLoading }) => {
@@ -10,15 +10,15 @@ const SplashScreen = ({ setIsLoading }) => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const user = await getFromAsyncStorage("user");
-        if (!user) {
+        const token = await getFromAsyncStorage("token");
+        if (!token) {
           setIsLoading(false);
           return;
         }
 
-        dispatch(signIn(user));
+        await dispatch(autoLoginAsync(token));
       } catch (error) {
-        console.log(`Login error: ${error}`);
+        console.log(`Login error: ${error.response.data}`);
       }
       setIsLoading(false);
     };

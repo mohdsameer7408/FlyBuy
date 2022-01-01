@@ -1,4 +1,4 @@
-import React, { useCallback, useReducer } from "react";
+import React, { useCallback, useReducer, useState } from "react";
 import {
   Dimensions,
   StatusBar,
@@ -37,6 +37,7 @@ const LoginScreen = ({ navigation }) => {
       isFormValid: false,
     }
   );
+  const [isSigningIn, setIsSigningIn] = useState(false);
   const dispatch = useDispatch();
 
   const onInputChange = useCallback(
@@ -58,9 +59,11 @@ const LoginScreen = ({ navigation }) => {
       return Alert.alert("Insufficient Data!", "Check for your invalid data.");
 
     try {
+      setIsSigningIn(true);
       await dispatch(signInAsync(values));
     } catch (error) {
-      Alert.alert("Sign In Error", "Something went wrong!");
+      setIsSigningIn(false);
+      Alert.alert("Sign In Error", error.response.data);
     }
   }, [values, validities, isFormValid, dispatch]);
 
@@ -113,7 +116,7 @@ const LoginScreen = ({ navigation }) => {
           textStyle={{ color: colors.background }}
           onButtonPress={onLoginHandler}
         >
-          Sign In
+          {isSigningIn ? "Logging In..." : "Sign In"}
         </FlyButton>
       </View>
     </ScrollView>
