@@ -5,7 +5,6 @@ import {
   StyleSheet,
   View,
   ScrollView,
-  Alert,
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
@@ -18,6 +17,7 @@ import FlyButton from "../components/FlyButton";
 import FlyInput from "../components/FlyInput";
 import formReducer, { UPDATE_FORM } from "../features/formReducer";
 import { signUpAsync } from "../features/authSlice";
+import FlyBuyAlert from "../components/FlyBuyAlert";
 
 const { width, height } = Dimensions.get("window");
 
@@ -40,6 +40,9 @@ const RegisterScreen = ({ navigation }) => {
     }
   );
   const [isRegistering, setIsRegistering] = useState(false);
+  const [alertTitle, setAlertTitle] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
+  const [isAlertOpened, setIsAlertOpened] = useState(false);
   const dispatch = useDispatch();
 
   const onInputChange = useCallback(
@@ -57,15 +60,21 @@ const RegisterScreen = ({ navigation }) => {
   );
 
   const onRegisterHandler = useCallback(async () => {
-    if (!isFormValid)
-      return Alert.alert("Insufficient Data!", "Check for your invalid data.");
+    if (!isFormValid) {
+      setAlertTitle("Insufficient Data!");
+      setAlertMessage("Check for your invalid data.");
+      setIsAlertOpened(true);
+      return;
+    }
 
     try {
       setIsRegistering(true);
       await dispatch(signUpAsync(values));
     } catch (error) {
       setIsRegistering(false);
-      Alert.alert("Registration Error", error.response.data);
+      setAlertTitle("Registration Error");
+      setAlertMessage(error.response.data);
+      setIsAlertOpened(true);
     }
   }, [values, validities, isFormValid, dispatch]);
 
@@ -88,17 +97,18 @@ const RegisterScreen = ({ navigation }) => {
         <FlyInput
           id="userName"
           placeholder="User Name"
-          onInputChange={onInputChange}
           required
+          onInputChange={onInputChange}
           initialValue={values.userName}
           initiallyValid={validities.userName}
         />
         <FlyInput
           id="email"
           placeholder="Phone, email or usename"
-          onInputChange={onInputChange}
           email
           required
+          autoCapitalize="none"
+          onInputChange={onInputChange}
           initialValue={values.email}
           initiallyValid={validities.email}
         />
@@ -106,8 +116,9 @@ const RegisterScreen = ({ navigation }) => {
           id="password"
           placeholder="password"
           password
-          onInputChange={onInputChange}
           required
+          minLength={4}
+          onInputChange={onInputChange}
           initialValue={values.password}
           initiallyValid={validities.password}
         />
@@ -125,10 +136,17 @@ const RegisterScreen = ({ navigation }) => {
           buttonColor={colors.text}
           textStyle={{ color: colors.background }}
           onButtonPress={onRegisterHandler}
+          disabled={isRegistering}
         >
           {isRegistering ? "Signing Up..." : "Register"}
         </FlyButton>
       </View>
+      <FlyBuyAlert
+        isAlertOpened={isAlertOpened}
+        closeAlert={() => setIsAlertOpened(false)}
+        title={alertTitle}
+        message={alertMessage}
+      />
     </ScrollView>
   );
 };

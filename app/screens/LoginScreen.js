@@ -86,9 +86,10 @@ const LoginScreen = ({ navigation }) => {
         <FlyInput
           id="email"
           placeholder="Phone, email or usename"
-          onInputChange={onInputChange}
           required
           email
+          autoCapitalize="none"
+          onInputChange={onInputChange}
           initialValue={values.email}
           initiallyValid={validities.email}
         />
@@ -96,8 +97,9 @@ const LoginScreen = ({ navigation }) => {
           id="password"
           placeholder="password"
           password
-          onInputChange={onInputChange}
           required
+          minLength={4}
+          onInputChange={onInputChange}
           initialValue={values.password}
           initiallyValid={validities.password}
         />
@@ -115,6 +117,7 @@ const LoginScreen = ({ navigation }) => {
           buttonColor={colors.text}
           textStyle={{ color: colors.background }}
           onButtonPress={onLoginHandler}
+          disabled={isSigningIn}
         >
           {isSigningIn ? "Logging In..." : "Sign In"}
         </FlyButton>
