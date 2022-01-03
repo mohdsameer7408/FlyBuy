@@ -5,7 +5,6 @@ import {
   StyleSheet,
   View,
   ScrollView,
-  Alert,
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
@@ -18,6 +17,7 @@ import FlyButton from "../components/FlyButton";
 import FlyInput from "../components/FlyInput";
 import formReducer, { UPDATE_FORM } from "../features/formReducer";
 import { signInAsync } from "../features/authSlice";
+import FlyBuyAlert from "../components/FlyBuyAlert";
 
 const { width, height } = Dimensions.get("window");
 
@@ -38,6 +38,9 @@ const LoginScreen = ({ navigation }) => {
     }
   );
   const [isSigningIn, setIsSigningIn] = useState(false);
+  const [alertTitle, setAlertTitle] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
+  const [isAlertOpened, setIsAlertOpened] = useState(false);
   const dispatch = useDispatch();
 
   const onInputChange = useCallback(
@@ -55,17 +58,32 @@ const LoginScreen = ({ navigation }) => {
   );
 
   const onLoginHandler = useCallback(async () => {
-    if (!isFormValid)
-      return Alert.alert("Insufficient Data!", "Check for your invalid data.");
+    if (!isFormValid) {
+      setAlertTitle("Insufficient Data!");
+      setAlertMessage("Check for your invalid data.");
+      setIsAlertOpened(true);
+      return;
+    }
 
     try {
       setIsSigningIn(true);
       await dispatch(signInAsync(values));
     } catch (error) {
       setIsSigningIn(false);
-      Alert.alert("Sign In Error", error.response.data);
+      setAlertTitle("Sign In Error");
+      setAlertMessage(error.response.data);
+      setIsAlertOpened(true);
     }
-  }, [values, validities, isFormValid, dispatch]);
+  }, [
+    values,
+    validities,
+    isFormValid,
+    dispatch,
+    setAlertTitle,
+    setAlertMessage,
+    setIsAlertOpened,
+    setIsSigningIn,
+  ]);
 
   return (
     <ScrollView contentContainerStyle={styles.loginScreen}>
@@ -122,6 +140,12 @@ const LoginScreen = ({ navigation }) => {
           {isSigningIn ? "Logging In..." : "Sign In"}
         </FlyButton>
       </View>
+      <FlyBuyAlert
+        isAlertOpened={isAlertOpened}
+        closeAlert={() => setIsAlertOpened(false)}
+        title={alertTitle}
+        message={alertMessage}
+      />
     </ScrollView>
   );
 };

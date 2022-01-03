@@ -76,7 +76,16 @@ const RegisterScreen = ({ navigation }) => {
       setAlertMessage(error.response.data);
       setIsAlertOpened(true);
     }
-  }, [values, validities, isFormValid, dispatch]);
+  }, [
+    values,
+    validities,
+    isFormValid,
+    dispatch,
+    setAlertTitle,
+    setAlertMessage,
+    setIsAlertOpened,
+    setIsRegistering,
+  ]);
 
   return (
     <ScrollView contentContainerStyle={styles.registerScreen}>
