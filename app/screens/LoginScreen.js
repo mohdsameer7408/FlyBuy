@@ -177,10 +177,6 @@ const styles = StyleSheet.create({
     marginTop: height * 0.08,
   },
   bottomContainer: {
-    // position: "absolute",
-    // bottom: 30,
-    // flex: 1,
-    flex: 1,
     width: width * 0.84,
     alignSelf: "center",
     justifyContent: "flex-end",
