@@ -8,10 +8,10 @@ import {
 import { AppearanceProvider, useColorScheme } from "react-native-appearance";
 import { useSelector } from "react-redux";
 
-import AuthStack from "./AuthStack";
 import { selectUser } from "../features/authSlice";
-import HomeScreen from "../screens/HomeScreen";
 import SplashScreen from "../screens/SplashScreen";
+import AuthStack from "./AuthStack";
+import HomeStack from "./HomeStack";
 
 const CustomDefaultTheme = {
   ...DefaultTheme,
@@ -50,7 +50,7 @@ const FlyBuyNavigator = () => {
       <NavigationContainer
         theme={scheme === "dark" ? CustomDarkTheme : CustomDefaultTheme}
       >
-        {user ? <HomeScreen /> : <AuthStack />}
+        {user ? <HomeStack /> : <AuthStack />}
         <StatusBar style="auto" />
       </NavigationContainer>
     </AppearanceProvider>
