@@ -177,6 +177,7 @@ const styles = StyleSheet.create({
     marginTop: height * 0.08,
   },
   bottomContainer: {
+    flex: 1,
     width: width * 0.84,
     alignSelf: "center",
     justifyContent: "flex-end",
