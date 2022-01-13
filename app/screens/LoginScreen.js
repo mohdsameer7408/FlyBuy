@@ -1,4 +1,4 @@
-import React, { useCallback, useReducer, useState } from "react";
+import React, { useCallback, useReducer, useRef, useState } from "react";
 import {
   Dimensions,
   StatusBar,
@@ -42,6 +42,7 @@ const LoginScreen = ({ navigation }) => {
   const [alertMessage, setAlertMessage] = useState("");
   const [isAlertOpened, setIsAlertOpened] = useState(false);
   const dispatch = useDispatch();
+  const passwordRef = useRef(null);
 
   const onInputChange = useCallback(
     (id, value, isValid) => {
@@ -110,8 +111,10 @@ const LoginScreen = ({ navigation }) => {
           onInputChange={onInputChange}
           initialValue={values.email}
           initiallyValid={validities.email}
+          onSubmitEditing={() => passwordRef.current.focus()}
         />
         <FlyInput
+          innerRef={passwordRef}
           id="password"
           placeholder="password"
           password
@@ -120,6 +123,7 @@ const LoginScreen = ({ navigation }) => {
           onInputChange={onInputChange}
           initialValue={values.password}
           initiallyValid={validities.password}
+          onSubmitEditing={onLoginHandler}
         />
       </View>
       <View style={styles.bottomContainer}>

@@ -20,7 +20,11 @@ const HomeScreen = () => {
   return (
     <View style={styles.homeScreen}>
       <FlyText>Home Screen</FlyText>
-      <FlyButton containerStyle={styles.signOutButton} onButtonPress={signOut}>
+      <FlyButton
+        containerStyle={styles.signOutButton}
+        onButtonPress={signOut}
+        buttonColor="#fff"
+      >
         Sign Out
       </FlyButton>
     </View>

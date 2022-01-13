@@ -1,4 +1,4 @@
-import React, { useReducer, useCallback, useState } from "react";
+import React, { useReducer, useCallback, useState, useRef } from "react";
 import {
   Dimensions,
   StatusBar,
@@ -44,6 +44,8 @@ const RegisterScreen = ({ navigation }) => {
   const [alertMessage, setAlertMessage] = useState("");
   const [isAlertOpened, setIsAlertOpened] = useState(false);
   const dispatch = useDispatch();
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
 
   const onInputChange = useCallback(
     (id, value, isValid) => {
@@ -58,6 +60,7 @@ const RegisterScreen = ({ navigation }) => {
     },
     [dispatchFormState]
   );
+  console.log(emailRef);
 
   const onRegisterHandler = useCallback(async () => {
     if (!isFormValid) {
@@ -107,11 +110,14 @@ const RegisterScreen = ({ navigation }) => {
           id="userName"
           placeholder="User Name"
           required
+          minLength={3}
           onInputChange={onInputChange}
           initialValue={values.userName}
           initiallyValid={validities.userName}
+          onSubmitEditing={() => emailRef.current.focus()}
         />
         <FlyInput
+          innerRef={emailRef}
           id="email"
           placeholder="Phone, email or usename"
           email
@@ -120,8 +126,10 @@ const RegisterScreen = ({ navigation }) => {
           onInputChange={onInputChange}
           initialValue={values.email}
           initiallyValid={validities.email}
+          onSubmitEditing={() => passwordRef.current.focus()}
         />
         <FlyInput
+          innerRef={passwordRef}
           id="password"
           placeholder="password"
           password
@@ -130,6 +138,7 @@ const RegisterScreen = ({ navigation }) => {
           onInputChange={onInputChange}
           initialValue={values.password}
           initiallyValid={validities.password}
+          onSubmitEditing={onRegisterHandler}
         />
       </View>
       <View style={styles.bottomContainer}>

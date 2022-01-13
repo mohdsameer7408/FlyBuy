@@ -31,6 +31,7 @@ const FlyInput = ({
   max,
   minLength,
   onInputChange,
+  innerRef,
   ...rest
 }) => {
   const [isPassowrdVisible, setIsPasswordVisible] = useState(false);
@@ -88,6 +89,7 @@ const FlyInput = ({
     >
       <TextInput
         {...rest}
+        ref={innerRef}
         style={{ ...styles.input, color: colors.text }}
         secureTextEntry={password ? !isPassowrdVisible : false}
         placeholderTextColor={colors.placeholder}
