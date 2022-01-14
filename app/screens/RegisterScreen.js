@@ -60,7 +60,6 @@ const RegisterScreen = ({ navigation }) => {
     },
     [dispatchFormState]
   );
-  console.log(emailRef);
 
   const onRegisterHandler = useCallback(async () => {
     if (!isFormValid) {
