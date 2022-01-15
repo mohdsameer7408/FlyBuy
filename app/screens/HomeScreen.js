@@ -2,12 +2,13 @@ import React from "react";
 import { Alert, Dimensions, StyleSheet, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { useTheme } from "@react-navigation/native";
-import { EvilIcons, Ionicons } from "@expo/vector-icons";
+import { EvilIcons, SimpleLineIcons } from "@expo/vector-icons";
 
 import FlyText from "../components/FlyText";
 import FlyButton from "../components/FlyButton";
 import { signOutAsync } from "../features/authSlice";
 import TouchableComponent from "../components/TouchableComponent";
+import FlyTextBold from "../components/FlyTextBold";
 
 const { width } = Dimensions.get("window");
 
@@ -33,7 +34,7 @@ const HomeScreen = () => {
             backgroundColor: colors.border,
           }}
         >
-          <Ionicons name="grid-outline" size={26} color={colors.text} />
+          <SimpleLineIcons name="grid" size={22} color={colors.text} />
         </TouchableComponent>
         <TouchableComponent
           containerStyle={styles.iconContainer}
@@ -42,8 +43,14 @@ const HomeScreen = () => {
             backgroundColor: colors.border,
           }}
         >
-          <EvilIcons name="cart" size={26} color={colors.text} />
+          <EvilIcons name="cart" size={24} color={colors.text} />
         </TouchableComponent>
+      </View>
+      <View style={styles.appDetails}>
+        <FlyTextBold style={styles.title}>Fly Buy</FlyTextBold>
+        <FlyText style={styles.description}>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem, est!
+        </FlyText>
       </View>
     </View>
   );
@@ -70,5 +77,17 @@ const styles = StyleSheet.create({
   iconWrapper: {
     justifyContent: "center",
     alignItems: "center",
+  },
+  appDetails: {
+    width,
+    marginVertical: 20,
+    paddingHorizontal: 20,
+  },
+  title: {
+    fontSize: 32,
+    marginBottom: 14,
+  },
+  description: {
+    fontSize: 18,
   },
 });
