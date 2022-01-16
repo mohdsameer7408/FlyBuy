@@ -81,7 +81,8 @@ const styles = StyleSheet.create({
   appDetails: {
     width,
     marginVertical: 20,
-    paddingHorizontal: 20,
+    paddingLeft: 20,
+    paddingRight: width * 0.2,
   },
   title: {
     fontSize: 32,
