@@ -1,12 +1,12 @@
 import React from "react";
-import { Alert, Dimensions, StyleSheet, View } from "react-native";
+import { Alert, Dimensions, StyleSheet, View, Image } from "react-native";
 import { useDispatch } from "react-redux";
 import { useTheme } from "@react-navigation/native";
 import { EvilIcons, SimpleLineIcons } from "@expo/vector-icons";
 
+import { signOutAsync } from "../features/authSlice";
 import FlyText from "../components/FlyText";
 import FlyButton from "../components/FlyButton";
-import { signOutAsync } from "../features/authSlice";
 import TouchableComponent from "../components/TouchableComponent";
 import FlyTextBold from "../components/FlyTextBold";
 
@@ -52,6 +52,13 @@ const HomeScreen = () => {
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem, est!
         </FlyText>
       </View>
+      <Image
+        style={styles.trendingImage}
+        source={{
+          uri: "https://images.unsplash.com/photo-1496412705862-e0088f16f791?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        }}
+        resizeMode="cover"
+      />
     </View>
   );
 };
@@ -62,10 +69,11 @@ const styles = StyleSheet.create({
   homeScreen: {
     flex: 1,
     paddingTop: 30,
+    alignItems: "center",
   },
   header: {
-    width,
-    padding: 20,
+    width: width * 0.9,
+    paddingVertical: 20,
     flexDirection: "row",
     justifyContent: "space-between",
   },
@@ -79,10 +87,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   appDetails: {
-    width,
-    marginVertical: 20,
-    paddingLeft: 20,
-    paddingRight: width * 0.2,
+    width: width * 0.9,
+    marginVertical: 10,
+    paddingRight: width * 0.1,
   },
   title: {
     fontSize: 32,
@@ -90,5 +97,11 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 18,
+  },
+  trendingImage: {
+    width: width * 0.9,
+    height: 140,
+    borderRadius: 12,
+    marginVertical: 20,
   },
 });
