@@ -1,5 +1,13 @@
 import React from "react";
-import { Alert, Dimensions, StyleSheet, View, Image } from "react-native";
+import {
+  Alert,
+  Dimensions,
+  StyleSheet,
+  View,
+  Image,
+  ScrollView,
+  FlatList,
+} from "react-native";
 import { useDispatch } from "react-redux";
 import { useTheme } from "@react-navigation/native";
 import { EvilIcons, SimpleLineIcons } from "@expo/vector-icons";
@@ -9,6 +17,7 @@ import FlyText from "../components/FlyText";
 import FlyButton from "../components/FlyButton";
 import TouchableComponent from "../components/TouchableComponent";
 import FlyTextBold from "../components/FlyTextBold";
+import Product from "../components/Product";
 
 const { width } = Dimensions.get("window");
 
@@ -25,7 +34,7 @@ const HomeScreen = () => {
   };
 
   return (
-    <View style={styles.homeScreen}>
+    <ScrollView contentContainerStyle={styles.homeScreen}>
       <View style={styles.header}>
         <TouchableComponent
           containerStyle={styles.iconContainer}
@@ -59,7 +68,23 @@ const HomeScreen = () => {
         }}
         resizeMode="cover"
       />
-    </View>
+      <View style={styles.section}>
+        <View style={styles.titleContainer}>
+          <FlyTextBold style={styles.description}>Most Popular</FlyTextBold>
+          <FlyTextBold>See all</FlyTextBold>
+        </View>
+        <FlatList
+          style={styles.productsList}
+          data={Array(10).fill()}
+          keyExtractor={(item, index) => index.toString()}
+          horizontal
+          ItemSeparatorComponent={() => (
+            <View style={{ width: 20, height: "100%" }} />
+          )}
+          renderItem={() => <Product />}
+        />
+      </View>
+    </ScrollView>
   );
 };
 
@@ -67,7 +92,6 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   homeScreen: {
-    flex: 1,
     paddingTop: 30,
     alignItems: "center",
   },
@@ -103,5 +127,20 @@ const styles = StyleSheet.create({
     height: 140,
     borderRadius: 12,
     marginVertical: 20,
+  },
+  section: {
+    width: width * 0.9,
+    marginVertical: 20,
+  },
+  titleContainer: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  productsList: {
+    overflow: "visible",
+    marginTop: 20,
   },
 });
