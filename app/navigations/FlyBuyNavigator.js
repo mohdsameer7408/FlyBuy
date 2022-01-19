@@ -19,6 +19,7 @@ const CustomDefaultTheme = {
     ...DefaultTheme.colors,
     background: "rgb(255, 255, 255)",
     card: "rgb(242, 242, 242)",
+    button: "#312C69",
     error: "#e80000",
     border: "#333",
     placeholder: "#888",
@@ -31,6 +32,8 @@ const CustomDarkTheme = {
   colors: {
     ...DarkTheme.colors,
     background: "#191720",
+    card: "#030e21",
+    button: "#312C69",
     error: "#e80000",
     border: "#333",
     placeholder: "#888",

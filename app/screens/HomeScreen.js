@@ -15,7 +15,6 @@ import { EvilIcons, SimpleLineIcons } from "@expo/vector-icons";
 
 import { signOutAsync } from "../features/authSlice";
 import FlyText from "../components/FlyText";
-import FlyButton from "../components/FlyButton";
 import TouchableComponent from "../components/TouchableComponent";
 import FlyTextBold from "../components/FlyTextBold";
 import Product from "../components/Product";

@@ -28,7 +28,7 @@ const Product = () => {
       <FlyButton
         containerStyle={styles.addButton}
         textStyle={styles.buttonText}
-        buttonColor={colors.border}
+        buttonColor={colors.button}
         onButtonPress={() => {}}
       >
         +
@@ -70,5 +70,6 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 26,
+    color: "#fff",
   },
 });
