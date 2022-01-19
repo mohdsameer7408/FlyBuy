@@ -7,6 +7,7 @@ import {
   Image,
   ScrollView,
   FlatList,
+  StatusBar,
 } from "react-native";
 import { useDispatch } from "react-redux";
 import { useTheme } from "@react-navigation/native";
@@ -34,65 +35,69 @@ const HomeScreen = () => {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.homeScreen}>
-      <View style={styles.header}>
-        <TouchableComponent
-          containerStyle={styles.iconContainer}
-          wrapperStyle={{
-            ...styles.iconWrapper,
-            backgroundColor: colors.border,
-          }}
-        >
-          <SimpleLineIcons name="grid" size={22} color={colors.text} />
-        </TouchableComponent>
-        <TouchableComponent
-          containerStyle={styles.iconContainer}
-          wrapperStyle={{
-            ...styles.iconWrapper,
-            backgroundColor: colors.border,
-          }}
-        >
-          <EvilIcons name="cart" size={24} color={colors.text} />
-        </TouchableComponent>
-      </View>
-      <View style={styles.appDetails}>
-        <FlyTextBold style={styles.title}>Fly Buy</FlyTextBold>
-        <FlyText style={styles.description}>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem, est!
-        </FlyText>
-      </View>
-      <Image
-        style={styles.trendingImage}
-        source={{
-          uri: "https://images.unsplash.com/photo-1496412705862-e0088f16f791?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-        }}
-        resizeMode="cover"
-      />
-      <View style={styles.section}>
-        <View style={styles.titleContainer}>
-          <FlyTextBold style={styles.description}>Most Popular</FlyTextBold>
-          <FlyTextBold>See all</FlyTextBold>
+    <View style={styles.homeScreenContainer}>
+      <ScrollView contentContainerStyle={styles.homeScreen}>
+        <View style={styles.header}>
+          <TouchableComponent
+            containerStyle={styles.iconContainer}
+            wrapperStyle={{
+              ...styles.iconWrapper,
+              backgroundColor: colors.border,
+            }}
+          >
+            <SimpleLineIcons name="grid" size={22} color={colors.text} />
+          </TouchableComponent>
+          <TouchableComponent
+            containerStyle={styles.iconContainer}
+            wrapperStyle={{
+              ...styles.iconWrapper,
+              backgroundColor: colors.border,
+            }}
+          >
+            <EvilIcons name="cart" size={24} color={colors.text} />
+          </TouchableComponent>
         </View>
-        <FlatList
-          style={styles.productsList}
-          data={Array(10).fill()}
-          keyExtractor={(item, index) => index.toString()}
-          horizontal
-          ItemSeparatorComponent={() => (
-            <View style={{ width: 20, height: "100%" }} />
-          )}
-          renderItem={() => <Product />}
+        <View style={styles.appDetails}>
+          <FlyTextBold style={styles.title}>Fly Buy</FlyTextBold>
+          <FlyText style={styles.description}>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem,
+            est!
+          </FlyText>
+        </View>
+        <Image
+          style={styles.trendingImage}
+          source={{
+            uri: "https://images.unsplash.com/photo-1496412705862-e0088f16f791?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+          }}
+          resizeMode="cover"
         />
-      </View>
-    </ScrollView>
+        <View style={styles.section}>
+          <View style={styles.titleContainer}>
+            <FlyTextBold style={styles.description}>Most Popular</FlyTextBold>
+            <FlyTextBold>See all</FlyTextBold>
+          </View>
+          <FlatList
+            style={styles.productsList}
+            data={Array(10).fill()}
+            keyExtractor={(_, index) => index.toString()}
+            horizontal
+            ItemSeparatorComponent={() => <View style={styles.itemSeperator} />}
+            renderItem={() => <Product />}
+          />
+        </View>
+      </ScrollView>
+    </View>
   );
 };
 
 export default HomeScreen;
 
 const styles = StyleSheet.create({
+  homeScreenContainer: {
+    paddingTop: StatusBar.currentHeight,
+  },
   homeScreen: {
-    paddingTop: 30,
+    paddingTop: 10,
     alignItems: "center",
   },
   header: {
@@ -142,5 +147,9 @@ const styles = StyleSheet.create({
   productsList: {
     overflow: "visible",
     marginTop: 20,
+  },
+  itemSeperator: {
+    width: 20,
+    height: "100%",
   },
 });
