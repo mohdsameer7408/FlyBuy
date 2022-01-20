@@ -21,7 +21,7 @@ import Product from "../components/Product";
 
 const { width } = Dimensions.get("window");
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   const { colors } = useTheme();
   const dispatch = useDispatch();
 
@@ -81,7 +81,7 @@ const HomeScreen = () => {
             keyExtractor={(_, index) => index.toString()}
             horizontal
             ItemSeparatorComponent={() => <View style={styles.itemSeperator} />}
-            renderItem={() => <Product />}
+            renderItem={() => <Product navigation={navigation} />}
           />
         </View>
       </ScrollView>

@@ -1,20 +1,21 @@
 import React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, Pressable, StyleSheet } from "react-native";
 import { useTheme } from "@react-navigation/native";
 
 import FlyText from "./FlyText";
 import FlyTextBold from "./FlyTextBold";
 import FlyButton from "./FlyButton";
 
-const Product = () => {
+const Product = ({ navigation }) => {
   const { colors } = useTheme();
 
   return (
-    <View
+    <Pressable
       style={{
         ...styles.productContainer,
         backgroundColor: colors.card,
       }}
+      onPress={() => navigation.navigate("ProductScreen")}
     >
       <Image
         style={styles.image}
@@ -33,7 +34,7 @@ const Product = () => {
       >
         +
       </FlyButton>
-    </View>
+    </Pressable>
   );
 };
 
