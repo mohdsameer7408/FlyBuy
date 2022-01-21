@@ -40,8 +40,12 @@ const HomeStack = () => {
           // ),
         })}
       />
+      <Stack.Screen
+        name="ProductScreen"
+        component={ProductScreen}
+        options={{ headerTitle: "", headerShown: false }}
+      />
       <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
-      <Stack.Screen name="ProductScreen" component={ProductScreen} />
       <Stack.Screen name="CartScreen" component={CartScreen} />
       <Stack.Screen name="OrdersScreen" component={OrdersScreen} />
     </Stack.Navigator>
