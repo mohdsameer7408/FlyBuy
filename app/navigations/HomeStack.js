@@ -1,14 +1,12 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useTheme } from "@react-navigation/native";
-import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 import HomeScreen from "../screens/HomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import CartScreen from "../screens/CartScreen";
 import OrdersScreen from "../screens/OrdersScreen";
 import ProductScreen from "../screens/ProductScreen";
-import FlyHeaderButton from "../components/FlyHeaderButton";
 
 const Stack = createStackNavigator();
 
