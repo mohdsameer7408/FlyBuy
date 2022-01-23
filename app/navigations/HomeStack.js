@@ -29,19 +29,13 @@ const HomeStack = () => {
         name="HomeScreen"
         component={HomeScreen}
         options={({ navigation }) => ({
-          headerTitle: "",
           headerShown: false,
-          // headerLeft: () => (
-          //   <HeaderButtons HeaderButtonComponent={FlyHeaderButton}>
-          //     <Item title="menu" iconName="grid-outline" onPress={() => {}} />
-          //   </HeaderButtons>
-          // ),
         })}
       />
       <Stack.Screen
         name="ProductScreen"
         component={ProductScreen}
-        options={{ headerTitle: "", headerShown: false }}
+        options={{ headerShown: false }}
       />
       <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
       <Stack.Screen name="CartScreen" component={CartScreen} />
