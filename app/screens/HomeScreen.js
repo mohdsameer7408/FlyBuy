@@ -84,6 +84,20 @@ const HomeScreen = ({ navigation }) => {
             renderItem={() => <Product navigation={navigation} />}
           />
         </View>
+        <View style={styles.section}>
+          <View style={styles.titleContainer}>
+            <FlyTextBold style={styles.description}>Regular</FlyTextBold>
+            <FlyTextBold>See all</FlyTextBold>
+          </View>
+          <FlatList
+            style={styles.productsList}
+            data={Array(10).fill()}
+            keyExtractor={(_, index) => index.toString()}
+            horizontal
+            ItemSeparatorComponent={() => <View style={styles.itemSeperator} />}
+            renderItem={() => <Product navigation={navigation} />}
+          />
+        </View>
       </ScrollView>
     </View>
   );
