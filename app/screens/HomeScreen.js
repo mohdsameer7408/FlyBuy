@@ -18,6 +18,7 @@ import FlyText from "../components/FlyText";
 import TouchableComponent from "../components/TouchableComponent";
 import FlyTextBold from "../components/FlyTextBold";
 import Product from "../components/Product";
+import ProductCard from "../components/ProductCard";
 
 const { width } = Dimensions.get("window");
 
@@ -86,17 +87,18 @@ const HomeScreen = ({ navigation }) => {
         </View>
         <View style={styles.section}>
           <View style={styles.titleContainer}>
-            <FlyTextBold style={styles.description}>Regular</FlyTextBold>
+            <FlyTextBold style={styles.description}>
+              Top of the week
+            </FlyTextBold>
             <FlyTextBold>See all</FlyTextBold>
           </View>
-          <FlatList
-            style={styles.productsList}
-            data={Array(10).fill()}
-            keyExtractor={(_, index) => index.toString()}
-            horizontal
-            ItemSeparatorComponent={() => <View style={styles.itemSeperator} />}
-            renderItem={() => <Product navigation={navigation} />}
-          />
+          <View style={styles.productsList}>
+            {Array(5)
+              .fill()
+              .map((_, index) => (
+                <ProductCard key={index} navigation={navigation} />
+              ))}
+          </View>
         </View>
       </ScrollView>
     </View>
