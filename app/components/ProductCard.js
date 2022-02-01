@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   productDetails: {
     flex: 1,
     marginLeft: 20,
-    alignItems: "center",
+    // alignItems: "center",
   },
   title: {
     fontSize: 20,
