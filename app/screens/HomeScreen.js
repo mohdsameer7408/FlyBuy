@@ -8,6 +8,7 @@ import {
   ScrollView,
   FlatList,
   StatusBar,
+  SafeAreaView,
 } from "react-native";
 import { useDispatch } from "react-redux";
 import { useTheme } from "@react-navigation/native";
@@ -35,7 +36,7 @@ const HomeScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.homeScreenContainer}>
+    <SafeAreaView style={styles.homeScreenContainer}>
       <ScrollView contentContainerStyle={styles.homeScreen}>
         <View style={styles.header}>
           <TouchableComponent
@@ -92,7 +93,7 @@ const HomeScreen = ({ navigation }) => {
             </FlyTextBold>
             <FlyTextBold>See all</FlyTextBold>
           </View>
-          <View style={styles.productsList}>
+          <View style={styles.productsListVertial}>
             {Array(5)
               .fill()
               .map((_, index) => (
@@ -101,7 +102,7 @@ const HomeScreen = ({ navigation }) => {
           </View>
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -162,6 +163,9 @@ const styles = StyleSheet.create({
   productsList: {
     overflow: "visible",
     marginTop: 20,
+  },
+  productsListVertial: {
+    marginTop: -10,
   },
   itemSeperator: {
     width: 20,
