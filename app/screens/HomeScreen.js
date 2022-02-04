@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Alert,
   Dimensions,
   StyleSheet,
   View,
@@ -10,11 +9,9 @@ import {
   StatusBar,
   SafeAreaView,
 } from "react-native";
-import { useDispatch } from "react-redux";
 import { useTheme } from "@react-navigation/native";
 import { EvilIcons, SimpleLineIcons } from "@expo/vector-icons";
 
-import { signOutAsync } from "../features/authSlice";
 import FlyText from "../components/FlyText";
 import TouchableComponent from "../components/TouchableComponent";
 import FlyTextBold from "../components/FlyTextBold";
@@ -25,15 +22,6 @@ const { width } = Dimensions.get("window");
 
 const HomeScreen = ({ navigation }) => {
   const { colors } = useTheme();
-  const dispatch = useDispatch();
-
-  const signOut = async () => {
-    try {
-      await dispatch(signOutAsync());
-    } catch (error) {
-      Alert.alert("Sign Out Error", "Something went wrong!");
-    }
-  };
 
   return (
     <SafeAreaView style={styles.homeScreenContainer}>
