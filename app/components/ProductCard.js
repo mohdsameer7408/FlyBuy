@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   cardLeftContainer: {
-    // justifyContent: "space-around",
+    justifyContent: "space-around",
     alignItems: "center",
   },
   image: {
