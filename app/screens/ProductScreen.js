@@ -28,6 +28,7 @@ const ProductScreen = ({ navigation }) => {
               ...styles.iconWrapper,
               backgroundColor: colors.border,
             }}
+            onPress={() => navigation.goBack()}
           >
             <Ionicons name="chevron-back" size={22} color={colors.text} />
           </TouchableComponent>
