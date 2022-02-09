@@ -6,6 +6,7 @@ import {
   ScrollView,
   StatusBar,
   Dimensions,
+  Image,
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
@@ -42,6 +43,13 @@ const ProductScreen = ({ navigation }) => {
             <MaterialIcons name="favorite" size={24} color={colors.error} />
           </TouchableComponent>
         </View>
+        <Image
+          style={styles.productImage}
+          resizeMode="cover"
+          source={{
+            uri: "https://static.toiimg.com/photo/msid-87930581/87930581.jpg?211826",
+          }}
+        />
       </ScrollView>
     </SafeAreaView>
   );
@@ -71,5 +79,11 @@ const styles = StyleSheet.create({
   iconWrapper: {
     justifyContent: "center",
     alignItems: "center",
+  },
+  productImage: {
+    // marginVertical: 20,
+    width: 160,
+    height: 140,
+    borderRadius: 12,
   },
 });
