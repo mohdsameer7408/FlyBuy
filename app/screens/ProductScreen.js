@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   productImage: {
-    // marginVertical: 20,
+    marginVertical: 20,
     width: 160,
     height: 140,
     borderRadius: 12,
