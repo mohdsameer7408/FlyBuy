@@ -28,9 +28,7 @@ const HomeStack = () => {
       <Stack.Screen
         name="HomeScreen"
         component={HomeScreen}
-        options={({ navigation }) => ({
-          headerShown: false,
-        })}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="ProductScreen"
