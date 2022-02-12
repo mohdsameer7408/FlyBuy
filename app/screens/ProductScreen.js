@@ -11,7 +11,6 @@ import {
 import { useTheme } from "@react-navigation/native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 
-import FlyText from "../components/FlyText";
 import TouchableComponent from "../components/TouchableComponent";
 
 const { width } = Dimensions.get("window");
