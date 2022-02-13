@@ -12,6 +12,9 @@ import { useTheme } from "@react-navigation/native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 
 import TouchableComponent from "../components/TouchableComponent";
+import FlyTextBold from "../components/FlyTextBold";
+import FlyText from "../components/FlyText";
+import FlyButton from "../components/FlyButton";
 
 const { width } = Dimensions.get("window");
 
@@ -44,11 +47,39 @@ const ProductScreen = ({ navigation }) => {
         </View>
         <Image
           style={styles.productImage}
-          resizeMode="cover"
+          resizeMode="center"
           source={{
             uri: "https://static.toiimg.com/photo/msid-87930581/87930581.jpg?211826",
           }}
         />
+        <View style={styles.productDetails}>
+          <FlyTextBold style={styles.productTitle}>
+            Onion and Corn Pizza
+          </FlyTextBold>
+          <FlyText style={styles.rating}>
+            {Array(5)
+              .fill("⭐")
+              .map((star) => star)}
+            {"   "}
+            4.5 (302)
+          </FlyText>
+          <View style={styles.priceButtonContainer}>
+            <FlyTextBold style={styles.price}>$ 4.54</FlyTextBold>
+            <FlyButton
+              containerStyle={styles.addToCart}
+              buttonColor={colors.button}
+              textStyle={styles.buttonText}
+              onButtonPress={() => {}}
+            >
+              Add to cart
+            </FlyButton>
+          </View>
+          <FlyText style={styles.productDescription}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
+            excepturi quam voluptate ducimus odio quisquam ut ipsa neque officia
+            laboriosam.
+          </FlyText>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -81,8 +112,40 @@ const styles = StyleSheet.create({
   },
   productImage: {
     marginVertical: 20,
-    width: 160,
-    height: 140,
+    width: width * 0.8,
+    height: 200,
     borderRadius: 12,
+  },
+  productDetails: {
+    width: width * 0.9,
+    marginVertical: 20,
+  },
+  productTitle: {
+    fontSize: 23,
+  },
+  rating: {
+    fontSize: 18,
+    marginTop: 10,
+  },
+  priceButtonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  price: {
+    fontSize: 24,
+    marginTop: 12,
+  },
+  addToCart: {
+    width: 100,
+    height: 40,
+  },
+  buttonText: {
+    color: "#fff",
+  },
+  productDescription: {
+    marginTop: 14,
+    fontSize: 15,
+    textAlign: "justify",
   },
 });
