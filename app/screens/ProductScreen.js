@@ -9,7 +9,7 @@ import {
   Image,
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
-import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { FontAwesome5, Ionicons, MaterialIcons } from "@expo/vector-icons";
 
 import TouchableComponent from "../components/TouchableComponent";
 import FlyTextBold from "../components/FlyTextBold";
@@ -81,6 +81,13 @@ const ProductScreen = ({ navigation }) => {
           </FlyText>
         </View>
       </ScrollView>
+      <FlyButton
+        containerStyle={styles.cartIconContainer}
+        buttonColor={colors.button}
+        onButtonPress={() => navigation.navigate("CartScreen")}
+      >
+        <FontAwesome5 name="shopping-bag" color={colors.text} size={24} />
+      </FlyButton>
     </SafeAreaView>
   );
 };
@@ -89,6 +96,7 @@ export default ProductScreen;
 
 const styles = StyleSheet.create({
   productScreenContainer: {
+    flex: 1,
     paddingTop: StatusBar.currentHeight,
   },
   productScreen: {
@@ -124,7 +132,7 @@ const styles = StyleSheet.create({
     fontSize: 23,
   },
   rating: {
-    fontSize: 18,
+    fontSize: 15,
     marginTop: 10,
   },
   priceButtonContainer: {
@@ -147,5 +155,14 @@ const styles = StyleSheet.create({
     marginTop: 14,
     fontSize: 15,
     textAlign: "justify",
+    marginBottom: 80,
+  },
+  cartIconContainer: {
+    position: "absolute",
+    alignSelf: "center",
+    bottom: 40,
+    width: 70,
+    height: 70,
+    borderRadius: 35,
   },
 });
