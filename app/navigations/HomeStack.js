@@ -35,9 +35,13 @@ const HomeStack = () => {
         component={ProductScreen}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
-      <Stack.Screen name="CartScreen" component={CartScreen} />
+      <Stack.Screen
+        name="CartScreen"
+        component={CartScreen}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen name="OrdersScreen" component={OrdersScreen} />
+      <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
     </Stack.Navigator>
   );
 };
