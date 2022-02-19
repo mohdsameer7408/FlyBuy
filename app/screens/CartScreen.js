@@ -12,6 +12,7 @@ import { useTheme } from "@react-navigation/native";
 
 import TouchableComponent from "../components/TouchableComponent";
 import FlyTextBold from "../components/FlyTextBold";
+import Order from "../components/Order";
 
 const { width } = Dimensions.get("window");
 
@@ -33,6 +34,27 @@ const CartScreen = ({ navigation }) => {
             <Ionicons name="chevron-back" size={22} color={colors.text} />
           </TouchableComponent>
           <FlyTextBold style={styles.headerTitle}>My Orders</FlyTextBold>
+        </View>
+        <View
+          style={{
+            ...styles.addressContainer,
+            backgroundColor: colors.backgroundFilter,
+          }}
+        >
+          <Ionicons name="location-outline" size={26} color={colors.text} />
+          <View style={styles.addressData}>
+            <FlyTextBold style={styles.address}>Delivery Address</FlyTextBold>
+            <FlyTextBold style={styles.address}>
+              Central Park, New York
+            </FlyTextBold>
+          </View>
+        </View>
+        <View style={styles.orderItems}>
+          {Array(4)
+            .fill()
+            .map((_, index) => (
+              <Order key={index} />
+            ))}
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -70,5 +92,26 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 26,
+  },
+  addressContainer: {
+    width: width * 0.9,
+    marginVertical: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    borderRadius: 12,
+    paddingVertical: 8,
+    paddingHorizontal: width * 0.05,
+  },
+  addressData: {
+    marginLeft: 20,
+    height: 50,
+    justifyContent: "space-between",
+  },
+  address: {
+    fontSize: 17,
+  },
+  orderItems: {
+    width: width * 0.9,
+    marginBottom: 20,
   },
 });
