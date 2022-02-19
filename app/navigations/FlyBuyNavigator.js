@@ -18,7 +18,7 @@ const CustomDefaultTheme = {
   colors: {
     ...DefaultTheme.colors,
     background: "rgb(255, 255, 255)",
-    backgroundFilter: "rgb(255, 255, 255, 0.2)",
+    backgroundFilter: "rgba(255, 255, 255, 0.2)",
     card: "rgb(242, 242, 242)",
     button: "#312C69",
     error: "#e80000",
@@ -33,7 +33,7 @@ const CustomDarkTheme = {
   colors: {
     ...DarkTheme.colors,
     background: "#191720",
-    backgroundFilter: "rgb(0, 0, 0, 0.2)",
+    backgroundFilter: "rgba(0, 0, 0, 0.2)",
     card: "#030e21",
     button: "#312C69",
     error: "#e80000",
