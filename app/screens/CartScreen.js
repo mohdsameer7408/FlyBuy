@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
   },
   cartBottom: {
     alignSelf: "center",
-    marginTop: 20,
+    paddingVertical: 20,
   },
   subtotalContainer: {
     width: width * 0.9,

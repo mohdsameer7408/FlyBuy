@@ -42,6 +42,7 @@ const HomeScreen = ({ navigation }) => {
               ...styles.iconWrapper,
               backgroundColor: colors.border,
             }}
+            onPress={() => navigation.navigate("CartScreen")}
           >
             <EvilIcons name="cart" size={24} color={colors.text} />
           </TouchableComponent>
