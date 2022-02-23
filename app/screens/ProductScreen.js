@@ -15,6 +15,7 @@ import TouchableComponent from "../components/TouchableComponent";
 import FlyTextBold from "../components/FlyTextBold";
 import FlyText from "../components/FlyText";
 import FlyButton from "../components/FlyButton";
+import ProductCard from "../components/ProductCard";
 
 const { width } = Dimensions.get("window");
 
@@ -79,6 +80,21 @@ const ProductScreen = ({ navigation }) => {
             excepturi quam voluptate ducimus odio quisquam ut ipsa neque officia
             laboriosam.
           </FlyText>
+        </View>
+        <View style={styles.section}>
+          <View style={styles.titleContainer}>
+            <FlyTextBold style={styles.description}>
+              Similar Products
+            </FlyTextBold>
+            <FlyTextBold>See all</FlyTextBold>
+          </View>
+          <View>
+            {Array(3)
+              .fill()
+              .map((_, index) => (
+                <ProductCard key={index} navigation={navigation} />
+              ))}
+          </View>
         </View>
       </ScrollView>
       <FlyButton
@@ -155,7 +171,18 @@ const styles = StyleSheet.create({
     marginTop: 14,
     fontSize: 15,
     textAlign: "justify",
-    marginBottom: 80,
+    marginBottom: 40,
+  },
+  section: {
+    width: width * 0.9,
+    marginBottom: 100,
+  },
+  titleContainer: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 20,
   },
   cartIconContainer: {
     position: "absolute",
@@ -164,5 +191,8 @@ const styles = StyleSheet.create({
     width: 70,
     height: 70,
     borderRadius: 35,
+  },
+  description: {
+    fontSize: 18,
   },
 });
