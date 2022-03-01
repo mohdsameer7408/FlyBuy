@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../features/authSlice";
 import SplashScreen from "../screens/SplashScreen";
 import AuthStack from "./AuthStack";
-import HomeStack from "./HomeStack";
+import FlyBuyDrawer from "./FlyBuyDrawer";
 
 const CustomDefaultTheme = {
   ...DefaultTheme,
@@ -55,7 +55,7 @@ const FlyBuyNavigator = () => {
       <NavigationContainer
         theme={scheme === "dark" ? CustomDarkTheme : CustomDefaultTheme}
       >
-        {user ? <HomeStack /> : <AuthStack />}
+        {user ? <FlyBuyDrawer /> : <AuthStack />}
         <StatusBar style="auto" />
       </NavigationContainer>
     </AppearanceProvider>

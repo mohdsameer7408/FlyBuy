@@ -33,6 +33,7 @@ const HomeScreen = ({ navigation }) => {
               ...styles.iconWrapper,
               backgroundColor: colors.border,
             }}
+            onPress={() => navigation.openDrawer()}
           >
             <SimpleLineIcons name="grid" size={22} color={colors.text} />
           </TouchableComponent>

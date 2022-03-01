@@ -10,7 +10,7 @@ import ProductScreen from "../screens/ProductScreen";
 
 const Stack = createStackNavigator();
 
-const HomeStack = () => {
+const HomeStack = ({ navigation }) => {
   const { colors } = useTheme();
 
   return (
