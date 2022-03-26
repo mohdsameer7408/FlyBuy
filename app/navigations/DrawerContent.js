@@ -8,6 +8,8 @@ import {
 
 import FlyText from "../components/FlyText";
 import FlyTextBold from "../components/FlyTextBold";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import TouchableComponent from "../components/TouchableComponent";
 
 const DrawerContent = (props) => {
   const { colors } = useTheme();
@@ -53,6 +55,16 @@ const DrawerContent = (props) => {
           <DrawerItemList {...props} />
         </DrawerContentScrollView>
       </View>
+      <View style={{ ...styles.drawerBottom, borderColor: colors.placeholder }}>
+        <TouchableComponent
+          containerStyle={styles.drawerItem}
+          wrapperStyle={styles.drawerItemWrapper}
+          onPress={() => {}}
+        >
+          <MaterialCommunityIcons name="logout" color={colors.text} size={26} />
+          <FlyText style={styles.logoutText}>Logout</FlyText>
+        </TouchableComponent>
+      </View>
     </View>
   );
 };
@@ -97,6 +109,23 @@ const styles = StyleSheet.create({
   drawerItems: {
     width: "100%",
     flex: 1,
-    marginTop: -20,
+    marginTop: -10,
+  },
+  drawerBottom: {
+    width: "100%",
+    borderTopWidth: 0.2,
+  },
+  drawerItem: {
+    width: "100%",
+    height: 60,
+  },
+  drawerItemWrapper: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 20,
+  },
+  logoutText: {
+    marginLeft: 20,
+    fontSize: 16,
   },
 });
