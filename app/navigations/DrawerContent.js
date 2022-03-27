@@ -23,16 +23,20 @@ const DrawerContent = (props) => {
             backgroundColor: colors.button,
           }}
         />
-        <Image
+        <View
           style={{
-            ...styles.profilePicture,
+            ...styles.imageContainer,
             backgroundColor: colors.background,
           }}
-          resizeMode="contain"
-          source={{
-            uri: "https://cdn-icons-png.flaticon.com/512/2922/2922561.png",
-          }}
-        />
+        >
+          <Image
+            style={styles.profilePicture}
+            resizeMode="contain"
+            source={{
+              uri: "https://cdn-icons-png.flaticon.com/512/2922/2922561.png",
+            }}
+          />
+        </View>
         <View
           style={{
             ...styles.headerBottom,
@@ -84,17 +88,23 @@ const styles = StyleSheet.create({
     height: 150,
     borderBottomRightRadius: 60,
   },
-  profilePicture: {
+  imageContainer: {
     zIndex: 1,
+    overflow: "hidden",
     position: "absolute",
     bottom: 116,
     width: 80,
     height: 80,
     borderRadius: 40,
   },
+  profilePicture: {
+    width: 80,
+    height: 80,
+  },
   headerBottom: {
     width: "100%",
     height: 150,
+    zIndex: 0,
   },
   headerBottomWrapper: {
     height: "100%",
