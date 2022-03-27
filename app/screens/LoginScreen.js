@@ -5,6 +5,7 @@ import {
   StyleSheet,
   View,
   ScrollView,
+  Platform,
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { AntDesign } from "@expo/vector-icons";
@@ -159,8 +160,8 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   loginScreen: {
     minHeight: height,
-    paddingTop: StatusBar.currentHeight + 20,
-    paddingBottom: 10,
+    paddingTop: StatusBar.currentHeight + Platform.OS === "android" ? 20 : 60,
+    paddingBottom: Platform.OS === "android" ? 10 : 30,
     paddingHorizontal: width * 0.07,
   },
   backButton: {

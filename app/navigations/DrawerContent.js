@@ -1,18 +1,32 @@
-import React from "react";
-import { StyleSheet, View, Image } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, View, Image, Platform } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import {
   DrawerContentScrollView,
   DrawerItemList,
 } from "@react-navigation/drawer";
+import { useDispatch } from "react-redux";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
+import { signOutAsync } from "../features/authSlice";
 import FlyText from "../components/FlyText";
 import FlyTextBold from "../components/FlyTextBold";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import TouchableComponent from "../components/TouchableComponent";
+import FlyBuyAlert from "../components/FlyBuyAlert";
 
 const DrawerContent = (props) => {
+  const [isAlertOpened, setIsAlertOpened] = useState(false);
   const { colors } = useTheme();
+  const dispatch = useDispatch();
+
+  const logoutHandler = async () => {
+    try {
+      await dispatch(signOutAsync());
+    } catch (error) {
+      console.log(error);
+      setIsAlertOpened(true);
+    }
+  };
 
   return (
     <View style={styles.drawer}>
@@ -63,12 +77,18 @@ const DrawerContent = (props) => {
         <TouchableComponent
           containerStyle={styles.drawerItem}
           wrapperStyle={styles.drawerItemWrapper}
-          onPress={() => {}}
+          onPress={logoutHandler}
         >
           <MaterialCommunityIcons name="logout" color={colors.text} size={26} />
           <FlyText style={styles.logoutText}>Logout</FlyText>
         </TouchableComponent>
       </View>
+      <FlyBuyAlert
+        isAlertOpened={isAlertOpened}
+        closeAlert={() => setIsAlertOpened(false)}
+        title="Error Signing Out"
+        message="Try signing out after sometime!"
+      />
     </View>
   );
 };
@@ -85,7 +105,7 @@ const styles = StyleSheet.create({
   },
   drawerHeader: {
     width: "100%",
-    height: 150,
+    height: Platform.OS === "ios" ? 150 : 100,
     borderBottomRightRadius: 60,
   },
   imageContainer: {
