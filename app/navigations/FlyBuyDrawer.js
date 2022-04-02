@@ -5,12 +5,17 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import HomeStack from "./HomeStack";
 import DrawerContent from "./DrawerContent";
 import ProfileScreen from "../screens/ProfileScreen";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import {
+  FontAwesome5,
+  Ionicons,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
+import OrdersScreen from "../screens/OrdersScreen";
 
 const Drawer = createDrawerNavigator();
 
 const FlyBuyDrawer = () => {
-  const { colors } = useTheme()
+  const { colors } = useTheme();
 
   return (
     <Drawer.Navigator
@@ -33,15 +38,24 @@ const FlyBuyDrawer = () => {
           ),
         }}
       />
-      <Drawer.Screen name="ProfileScreen" component={ProfileScreen} options={{
-        drawerIcon: ({ color, size }) => (
-          <Ionicons
-            name="person-outline"
-            color={color}
-            size={size}
-          />
-        ),
-      }} />
+      <Drawer.Screen
+        name="ProfileScreen"
+        component={ProfileScreen}
+        options={{
+          drawerIcon: ({ color, size }) => (
+            <Ionicons name="person-outline" color={color} size={size} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="OrdersScreen"
+        component={OrdersScreen}
+        options={{
+          drawerIcon: ({ color, size }) => (
+            <FontAwesome5 name="glass-whiskey" color={color} size={size} />
+          ),
+        }}
+      />
     </Drawer.Navigator>
   );
 };

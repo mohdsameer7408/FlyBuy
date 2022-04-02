@@ -13,6 +13,7 @@ import FlyText from "../components/FlyText";
 import FlyTextBold from "../components/FlyTextBold";
 import TouchableComponent from "../components/TouchableComponent";
 import FlyBuyAlert from "../components/FlyBuyAlert";
+import Card from "../components/Card";
 
 const DrawerContent = (props) => {
   const [isAlertOpened, setIsAlertOpened] = useState(false);
@@ -37,7 +38,7 @@ const DrawerContent = (props) => {
             backgroundColor: colors.button,
           }}
         />
-        <View
+        <Card
           style={{
             ...styles.imageContainer,
             backgroundColor: colors.background,
@@ -50,7 +51,7 @@ const DrawerContent = (props) => {
               uri: "https://cdn-icons-png.flaticon.com/512/2922/2922561.png",
             }}
           />
-        </View>
+        </Card>
         <View
           style={{
             ...styles.headerBottom,
@@ -73,13 +74,13 @@ const DrawerContent = (props) => {
           <DrawerItemList {...props} />
         </DrawerContentScrollView>
       </View>
-      <View style={{ ...styles.drawerBottom, borderColor: colors.placeholder }}>
+      <View style={{ ...styles.drawerBottom, borderColor: colors.background }}>
         <TouchableComponent
           containerStyle={styles.drawerItem}
           wrapperStyle={styles.drawerItemWrapper}
           onPress={logoutHandler}
         >
-          <MaterialCommunityIcons name="logout" color={colors.text} size={26} />
+          <MaterialCommunityIcons name="logout" color={colors.text} size={24} />
           <FlyText style={styles.logoutText}>Logout</FlyText>
         </TouchableComponent>
       </View>
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 60,
   },
   imageContainer: {
-    zIndex: 1,
+    zIndex: 2,
     overflow: "hidden",
     position: "absolute",
     bottom: 116,
@@ -124,7 +125,6 @@ const styles = StyleSheet.create({
   headerBottom: {
     width: "100%",
     height: 150,
-    zIndex: 0,
   },
   headerBottomWrapper: {
     height: "100%",
@@ -143,11 +143,13 @@ const styles = StyleSheet.create({
   },
   drawerBottom: {
     width: "100%",
-    borderTopWidth: 0.2,
+    borderTopWidth: 1,
+    paddingTop: 8,
   },
   drawerItem: {
     width: "100%",
-    height: 60,
+    height: 50,
+    marginBottom: 8,
   },
   drawerItemWrapper: {
     flexDirection: "row",
