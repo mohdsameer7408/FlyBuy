@@ -65,7 +65,9 @@ const DrawerContent = (props) => {
             }}
           >
             <FlyTextBold style={styles.userName}>Elka Rosewood</FlyTextBold>
-            <FlyText>elkars@gmail.com</FlyText>
+            <FlyText style={{ color: colors.placeholder }}>
+              elkars@gmail.com
+            </FlyText>
           </View>
         </View>
       </View>
