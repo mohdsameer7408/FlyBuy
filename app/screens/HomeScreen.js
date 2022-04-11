@@ -37,16 +37,28 @@ const HomeScreen = ({ navigation }) => {
           >
             <SimpleLineIcons name="grid" size={22} color={colors.text} />
           </TouchableComponent>
-          <TouchableComponent
-            containerStyle={styles.iconContainer}
-            wrapperStyle={{
-              ...styles.iconWrapper,
-              backgroundColor: colors.border,
-            }}
-            onPress={() => navigation.navigate("CartScreen")}
-          >
-            <EvilIcons name="cart" size={24} color={colors.text} />
-          </TouchableComponent>
+          <View style={styles.headerRight}>
+            <TouchableComponent
+              containerStyle={{ ...styles.iconContainer, marginRight: 10 }}
+              wrapperStyle={{
+                ...styles.iconWrapper,
+                backgroundColor: colors.border,
+              }}
+              onPress={() => {}}
+            >
+              <EvilIcons name="search" size={24} color={colors.text} />
+            </TouchableComponent>
+            <TouchableComponent
+              containerStyle={styles.iconContainer}
+              wrapperStyle={{
+                ...styles.iconWrapper,
+                backgroundColor: colors.border,
+              }}
+              onPress={() => navigation.navigate("CartScreen")}
+            >
+              <EvilIcons name="cart" size={24} color={colors.text} />
+            </TouchableComponent>
+          </View>
         </View>
         <View style={styles.appDetails}>
           <FlyTextBold style={styles.title}>Fly Buy</FlyTextBold>
@@ -111,6 +123,9 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  headerRight: {
+    flexDirection: "row",
   },
   iconContainer: {
     width: 40,

@@ -36,6 +36,7 @@ const FlyBuyDrawer = () => {
               size={size}
             />
           ),
+          drawerLabel: "Home",
         }}
       />
       <Drawer.Screen
@@ -45,6 +46,7 @@ const FlyBuyDrawer = () => {
           drawerIcon: ({ color, size }) => (
             <Ionicons name="person-outline" color={color} size={size} />
           ),
+          drawerLabel: "Profile",
         }}
       />
       <Drawer.Screen
@@ -54,6 +56,7 @@ const FlyBuyDrawer = () => {
           drawerIcon: ({ color, size }) => (
             <FontAwesome5 name="glass-whiskey" color={color} size={size} />
           ),
+          drawerLabel: "Your Orders",
         }}
       />
     </Drawer.Navigator>
