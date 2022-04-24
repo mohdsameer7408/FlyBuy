@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   },
   search: {
     width: width * 0.93 - 60,
-    height: 50,
+    height: 46,
     borderRadius: 8,
     paddingHorizontal: 12,
     fontSize: 16,
