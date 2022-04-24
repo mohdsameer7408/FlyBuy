@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Dimensions,
   StyleSheet,
@@ -17,10 +17,12 @@ import TouchableComponent from "../components/TouchableComponent";
 import FlyTextBold from "../components/FlyTextBold";
 import Product from "../components/Product";
 import ProductCard from "../components/ProductCard";
+import FlySearch from "../components/FlySearch";
 
 const { width } = Dimensions.get("window");
 
 const HomeScreen = ({ navigation }) => {
+  const [isSearchOpened, setIsSearchOpened] = useState(false);
   const { colors } = useTheme();
 
   return (
@@ -44,7 +46,7 @@ const HomeScreen = ({ navigation }) => {
                 ...styles.iconWrapper,
                 backgroundColor: colors.border,
               }}
-              onPress={() => {}}
+              onPress={() => setIsSearchOpened(true)}
             >
               <EvilIcons name="search" size={24} color={colors.text} />
             </TouchableComponent>
@@ -104,6 +106,10 @@ const HomeScreen = ({ navigation }) => {
           </View>
         </View>
       </ScrollView>
+      <FlySearch
+        isSearchOpened={isSearchOpened}
+        closeSearch={() => setIsSearchOpened(false)}
+      />
     </SafeAreaView>
   );
 };
